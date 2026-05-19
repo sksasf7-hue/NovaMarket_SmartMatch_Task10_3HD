@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NovaMarket SmartMatch - SIT774 Task 10.3HD innovative website feature prototype." />
+  <title>NovaMarket SmartMatch | SIT774 Task 10.3HD</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#smartmatch">Skip to SmartMatch feature</a>
+
+  <header class="site-header" aria-label="Main navigation">
+    <nav class="nav shell">
+      <a href="#home" class="brand" aria-label="NovaMarket home">
+        <span class="brand-mark" aria-hidden="true">N</span>
+        <span>
+          <strong>NovaMarket</strong>
+          <small>Smart commerce prototype</small>
+        </span>
+      </a>
+      <button class="mobile-menu" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#smartmatch">SmartMatch</a>
+        <a href="#catalog">Catalog</a>
+        <a href="#database">Database Demo</a>
+        <a href="#wiki">Developer Wiki</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero shell section-pad" aria-labelledby="hero-title">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">SIT774 Task 10.3HD working prototype</p>
+        <h1 id="hero-title">A premium e-commerce website with an explainable Smart Product Match feature.</h1>
+        <p class="hero-lead">NovaMarket transforms a standard product catalog into a guided buying experience. Users enter goals, budget, and priorities, then receive ranked recommendations with transparent score breakdowns, comparison tools, and database-backed interactions.</p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="btn btn-primary" href="#smartmatch">Try SmartMatch</a>
+          <a class="btn btn-secondary" href="#wiki">View implementation notes</a>
+        </div>
+        <div class="trust-row" aria-label="Prototype highlights">
+          <span>SQLite persistence</span>
+          <span>Accessible UI</span>
+          <span>Explainable logic</span>
+          <span>Responsive design</span>
+        </div>
+      </div>
+      <aside class="hero-panel reveal" aria-label="Live performance summary">
+        <div class="orb orb-one" aria-hidden="true"></div>
+        <div class="orb orb-two" aria-hidden="true"></div>
+        <p class="panel-kicker">Live prototype metrics</p>
+        <div class="metric-grid" id="statsGrid" aria-live="polite">
+          <article class="metric-card"><strong>--</strong><span>Products</span></article>
+          <article class="metric-card"><strong>--</strong><span>Avg rating</span></article>
+          <article class="metric-card"><strong>--</strong><span>Matches run</span></article>
+          <article class="metric-card"><strong>--</strong><span>Wishlist clicks</span></article>
+        </div>
+        <div class="data-flow" aria-label="Feature data flow">
+          <div><span>1</span> Preference input</div>
+          <div><span>2</span> SQLite product read</div>
+          <div><span>3</span> Scoring algorithm</div>
+          <div><span>4</span> Explainable results</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="feature-strip shell reveal" aria-label="Website feature benefits">
+      <article>
+        <span class="mini-icon" aria-hidden="true">🎯</span>
+        <h2>Personalised</h2>
+        <p>Recommendations adapt to category, budget, shopping priority, and use case.</p>
+      </article>
+      <article>
+        <span class="mini-icon" aria-hidden="true">🧠</span>
+        <h2>Explainable</h2>
+        <p>Every result includes score bars and reasons instead of a hidden ranking.</p>
+      </article>
+      <article>
+        <span class="mini-icon" aria-hidden="true">♿</span>
+        <h2>Accessible</h2>
+        <p>Semantic HTML, labels, keyboard focus, aria-live feedback, and reduced-motion support.</p>
+      </article>
+    </section>
+
+    <!-- Awesome feature implementation: SmartMatch preference UI and ranked results. -->
+    <section class="section shell" id="smartmatch" aria-labelledby="smartmatch-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Awesome website feature</p>
+        <h2 id="smartmatch-title">Adaptive Smart Product Match</h2>
+        <p>The core implemented feature lets a user ask the website for a suitable product. The page sends preferences to a Python/SQLite API, receives ranked products, then displays an understandable match score and comparison options.</p>
+      </div>
+
+      <div class="smart-layout reveal">
+        <form class="smart-form glass-card" id="smartForm" aria-describedby="smartHelp">
+          <div class="form-head">
+            <span class="form-icon" aria-hidden="true">✨</span>
+            <div>
+              <h3>Find my best match</h3>
+              <p id="smartHelp">Adjust the inputs and the assistant will rank products using database records.</p>
+            </div>
+          </div>
+
+          <label for="category">Product category</label>
+          <select id="category" name="category">
+            <option value="All">All categories</option>
+          </select>
+
+          <label for="budget">Maximum budget in AUD</label>
+          <input id="budget" name="budget" type="number" min="0" step="1" value="180" inputmode="decimal" />
+
+          <label for="priority">Shopping priority</label>
+          <select id="priority" name="priority">
+            <option value="balanced">Balanced recommendation</option>
+            <option value="value">Best value</option>
+            <option value="sustainability">Sustainability</option>
+            <option value="performance">Performance</option>
+            <option value="accessibility">Accessibility</option>
+          </select>
+
+          <label for="usage">Main use case</label>
+          <select id="usage" name="usage">
+            <option value="study">Study and productivity</option>
+            <option value="home-office">Home office</option>
+            <option value="eco">Eco-conscious shopping</option>
+            <option value="gift">Reliable gift</option>
+          </select>
+
+          <label class="check-row" for="includeUnavailable">
+            <input id="includeUnavailable" name="includeUnavailable" type="checkbox" />
+            Include waitlist/out-of-stock products
+          </label>
+
+          <button class="btn btn-primary full" type="submit">Generate smart matches</button>
+          <p class="form-note">Tip: change priority to accessibility or sustainability to see the ranking logic adapt.</p>
+        </form>
+
+        <div class="results-panel glass-card" aria-live="polite" aria-busy="false">
+          <div class="results-head">
+            <div>
+              <p class="eyebrow">Live results</p>
+              <h3>Recommended products</h3>
+            </div>
+            <span class="latency" id="latencyBadge">Ready</span>
+          </div>
+          <div id="resultsList" class="results-list">
+            <div class="empty-state">
+              <span aria-hidden="true">🛍️</span>
+              <p>Run SmartMatch to see personalised product results from the SQLite database.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="catalog" aria-labelledby="catalog-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Product catalog</p>
+        <h2 id="catalog-title">Modern responsive catalog</h2>
+        <p>The catalog uses the same SQLite product data as the SmartMatch feature. It includes search, category filters, wishlist event tracking, and a comparison drawer.</p>
+      </div>
+      <div class="catalog-tools reveal">
+        <label class="sr-only" for="searchBox">Search products</label>
+        <input id="searchBox" type="search" placeholder="Search by name, feature, or category" />
+        <label class="sr-only" for="catalogFilter">Filter catalog category</label>
+        <select id="catalogFilter">
+          <option value="All">All categories</option>
+        </select>
+      </div>
+      <div class="product-grid reveal" id="productGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="section shell" id="database" aria-labelledby="database-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Database integration</p>
+        <h2 id="database-title">SQLite-backed interactions</h2>
+        <p>This section demonstrates that the website is not static. It can insert new product records, save contact messages, store wishlist events, and log recommendation runs.</p>
+      </div>
+      <div class="db-layout reveal">
+        <form class="glass-card compact-form" id="productForm">
+          <h3>Add demo product</h3>
+          <p>Use this optional admin-style form to insert a product into the SQLite PRODUCT table.</p>
+          <div class="two-col">
+            <div>
+              <label for="productName">Product name</label>
+              <input id="productName" name="product_name" maxlength="100" value="Nova Stand Pro" required />
+            </div>
+            <div>
+              <label for="productCategory">Category</label>
+              <select id="productCategory" name="category" required></select>
+            </div>
+          </div>
+          <div class="two-col">
+            <div>
+              <label for="productPrice">Price</label>
+              <input id="productPrice" name="unit_price" type="number" min="0" step="0.01" value="79.95" required />
+            </div>
+            <div>
+              <label for="productStock">Stock</label>
+              <input id="productStock" name="stock_qty" type="number" min="0" step="1" value="20" required />
+            </div>
+          </div>
+          <div class="three-col">
+            <div>
+              <label for="productRating">Rating</label>
+              <input id="productRating" name="rating" type="number" min="0" max="5" step="0.1" value="4.6" required />
+            </div>
+            <div>
+              <label for="productEco">Eco</label>
+              <input id="productEco" name="eco_score" type="number" min="0" max="100" value="88" required />
+            </div>
+            <div>
+              <label for="productAccess">Access</label>
+              <input id="productAccess" name="accessibility_score" type="number" min="0" max="100" value="86" required />
+            </div>
+          </div>
+          <div class="two-col">
+            <div>
+              <label for="productPerformance">Performance</label>
+              <input id="productPerformance" name="performance_score" type="number" min="0" max="100" value="76" required />
+            </div>
+            <div>
+              <label for="productBadge">Badge</label>
+              <input id="productBadge" name="badge" maxlength="40" value="New" required />
+            </div>
+          </div>
+          <label for="productIcon">Icon</label>
+          <input id="productIcon" name="icon" maxlength="4" value="🧲" required />
+          <label for="productDescription">Description</label>
+          <textarea id="productDescription" name="description" maxlength="220" required>Premium foldable laptop stand with cable routing and ergonomic viewing height.</textarea>
+          <label for="productFeatures">Features, comma separated</label>
+          <input id="productFeatures" name="features" value="Foldable, Ergonomic angle, Aluminium frame, Cable routing" />
+          <button class="btn btn-secondary full" type="submit">Add Product</button>
+          <div class="status-box" id="productStatus" role="status"></div>
+        </form>
+
+        <article class="glass-card implementation-card">
+          <h3>Implementation proof</h3>
+          <p>The site uses a local database file named <strong>novamarket.db</strong>. The Python API creates tables, validates submitted data, executes parameterized SQL, and returns JSON to the browser.</p>
+          <dl class="schema-list">
+            <div><dt>product</dt><dd>Catalog data used by SmartMatch and the product grid.</dd></div>
+            <div><dt>recommendation_event</dt><dd>Logs each SmartMatch run and top result.</dd></div>
+            <div><dt>wishlist_event</dt><dd>Records wishlist interactions from product cards.</dd></div>
+            <div><dt>contact_message</dt><dd>Stores validated user messages.</dd></div>
+          </dl>
+          <div class="code-callout">
+            <span>API endpoints</span>
+            <code>GET /api/products</code>
+            <code>POST /api/recommend</code>
+            <code>POST /api/add-product</code>
+            <code>POST /api/contact</code>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell wiki" id="wiki" aria-labelledby="wiki-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Developer wiki / tutorial</p>
+        <h2 id="wiki-title">How this feature was implemented</h2>
+        <p>This concise tutorial is included directly in the website so another developer can understand and recreate the SmartMatch pattern.</p>
+      </div>
+      <div class="timeline reveal">
+        <article>
+          <span>01</span>
+          <h3>Model useful product attributes</h3>
+          <p>The PRODUCT table stores price, stock, rating, eco score, accessibility score, performance score, badge, description, and feature list. These fields give the ranking logic meaningful signals.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Collect clear preferences</h3>
+          <p>The SmartMatch form captures category, budget, priority, and use case. Labels and keyboard-friendly controls keep the interface accessible.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Score with explainability</h3>
+          <p>The server calculates category fit, budget fit, availability, priority match, and use-case fit. The API returns score breakdowns so the user sees why a product is recommended.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Render interactive results</h3>
+          <p>JavaScript builds result cards, progress bars, reason chips, wishlist buttons, and comparison controls. Results are updated without reloading the full page.</p>
+        </article>
+        <article>
+          <span>05</span>
+          <h3>Persist user actions</h3>
+          <p>Recommendation runs, contact messages, added products, and wishlist clicks are stored in SQLite using parameterized SQL and server-side validation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" id="contact" aria-labelledby="contact-title">
+      <div class="contact-card glass-card reveal">
+        <div>
+          <p class="eyebrow">Contact form</p>
+          <h2 id="contact-title">Save a message to the database</h2>
+          <p>This form demonstrates validated user input saved into the CONTACT_MESSAGE table.</p>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <label for="contactName">Name</label>
+          <input id="contactName" name="name" maxlength="80" value="Alex Customer" required />
+          <label for="contactEmail">Email</label>
+          <input id="contactEmail" name="email" type="email" maxlength="120" value="alex.customer@example.com" required />
+          <label for="contactSubject">Subject</label>
+          <input id="contactSubject" name="subject" maxlength="120" value="SmartMatch enquiry" required />
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" name="message" maxlength="600" required>I would like to know whether SmartMatch can recommend products for accessibility-focused users.</textarea>
+          <button class="btn btn-primary full" type="submit">Save Message</button>
+          <div id="contactStatus" class="status-box" role="status"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <aside class="compare-drawer" id="compareDrawer" aria-label="Product comparison drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">Compare</p>
+        <h2>Selected products</h2>
+      </div>
+      <button class="icon-btn" id="closeCompare" type="button" aria-label="Close comparison drawer">×</button>
+    </div>
+    <div id="compareContent" class="compare-content"></div>
+  </aside>
+
+  <button class="floating-compare" id="openCompare" type="button" aria-label="Open comparison drawer">
+    Compare <span id="compareCount">0</span>
+  </button>
+
+  <footer class="site-footer shell">
+    <p>NovaMarket SmartMatch - SIT774 Task 10.3HD prototype. Built with HTML, CSS, JavaScript, Python HTTPServer, and SQLite.</p>
+    <a href="#home">Back to top</a>
+  </footer>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

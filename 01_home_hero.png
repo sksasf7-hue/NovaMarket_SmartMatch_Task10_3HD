@@ -1,0 +1,28 @@
+# Narrated Video Walkthrough Script - 10 Minutes Maximum
+
+## 0:00-0:45 Introduction
+This is my SIT774 Task 10.3HD prototype named NovaMarket SmartMatch. The selected awesome website feature is an Adaptive Smart Product Match and Compare Assistant for an e-commerce website.
+
+## 0:45-2:15 Feature demonstration
+I enter a category, budget, shopping priority, and use case. When I click Generate smart matches, the front end sends the preferences to the Python API. The API reads products from SQLite, ranks them, stores a recommendation event, and returns the best matches.
+
+## 2:15-3:30 Explainable results
+Each result shows a match score, score breakdown bars, and plain-language reasons. This improves user trust because the recommendation is transparent rather than hidden.
+
+## 3:30-4:45 Comparison and wishlist
+I can compare up to three products using the drawer. I can also save a wishlist event. The live metrics update because the website writes interaction data to SQLite.
+
+## 4:45-6:00 Database-backed product insertion
+The optional Add Product form validates product details and inserts a new product into the PRODUCT table. The catalog then refreshes from the database.
+
+## 6:00-7:00 Contact message persistence
+The contact form validates name, email, subject, and message, then saves the record into the CONTACT_MESSAGE table.
+
+## 7:00-8:30 Code walkthrough
+In app.py, init_db creates the SQLite tables. The calculate_recommendation_score function is the core awesome feature logic. The /api/recommend endpoint validates input, runs the scoring algorithm, saves the recommendation event, and returns JSON. In app.js, handleSmartMatch sends the request and renders the results. The CSS file provides responsive layout, modern visuals, and accessible focus states.
+
+## 8:30-9:30 Usability, accessibility, and performance
+The design uses clear labels, semantic sections, keyboard-accessible controls, aria-live feedback, visible focus outlines, and reduced-motion support. Performance is supported by lightweight standard-library Python, local SQLite, small JSON responses, no large external libraries, and client-side updates without full page reloads.
+
+## 9:30-10:00 Conclusion
+This prototype satisfies Task 10.3HD because it transforms a creative website feature into functioning code, demonstrates the feature in a polished page, and explains how another developer could implement a similar feature.
